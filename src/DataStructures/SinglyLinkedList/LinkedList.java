@@ -49,15 +49,31 @@ public class LinkedList {
 
     //Insert Methods
     public void insertFront(ListNode node) {
-
+        if (head != null) {
+            node.setNext(head);
+        }
+        head = node;
     }
 
     public void insertRear(ListNode node) {
-
+        ListNode temp = head;
+        while(temp.getNext() != null) {
+            temp = temp.getNext();
+        }
+        temp.setNext(node);
     }
 
     public void insertIndex(ListNode node, int index) {
-        
+        if (index == 0) {
+            insertFront(node);
+        }
+        ListNode temp = head;
+        int current = 0;
+        while (current < index - 1) {
+            temp = temp.getNext();
+            current++;
+        }
+        node.setNext(temp.getNext());
+        temp.setNext(node);
     }
-
 }
